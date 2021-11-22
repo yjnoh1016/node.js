@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <% if(is_logined==false){%>
+    <table width="30%">
+      <tr>
+        <td><a href="/">Home</a></td>
+        <td><a href="/login">login</a></td>
+        <td><a href="/register">register</a></td>
+      </tr>
+    </table>
+    <%}else{%>
+    <table width="30%">
+      <tr>
+        <td><a href="/">Home</a></td>
+        <td><%= name %> 님 환영합니다!</td>
+        <td><a href="/logout">logout</a></td>
+      </tr>
+    </table>
+    <%}%>
+    <div>
+      <h1>Node Mall</h1>
+    </div>
+  </body>
+</html>
