@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사용자 수정</title>
+    <title>도서 수정</title>
 </head>
 <body>
     <h1>업데이트 폼</h1>
-    <form action="/update/<%=users[0].id %>" method="post">
-        name<input type="text" name="name" value="<%users[0].name %>"><br>
-        email<input type="text" name="email" value="<%users[0].email %>"><br>
+    <form action="/update/<%=book[0].book_no %>" method="post">
+        이름<input type="text" name="book_name" value="<%book[0].book_name %>"><br>
+        출판사<input type="text" name="publishing_house" value="<%book[0].publishing_house %>"><br>
+        반납 여부<input type="text" name="rentYN" value="<%book[0].rentYN %>"><br>
         <button type="submit">업데이트</button>
     </form>   
 </body>

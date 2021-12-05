@@ -16,14 +16,14 @@ const con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "qwer1234",
-  database: "nodejs_db",
+  database: "book",
 });
 
 app.get("/", (req, res) => {
-  const sql = "SELECT * FROM users";
+  const sql = "SELECT * FROM book";
   con.query(sql, function (err, result, fields) {
     if (err) throw err;
-    res.render("index", { users: result });
+    res.render("index", { book: result });
   });
 });
 
@@ -34,18 +34,29 @@ app.get("/create", (req, res) =>
 
 // 사용자 정보 입력문
 app.post("/", (req, res) => {
-  const sql = "INSERT INTO users SET ?";
+  const sql = "INSERT INTO book SET ?";
   con.query(sql, req.body, function (err, result, fields) {
-    if (err) throw err;
+    if (err) {
+      const sql = "INSERT INTO customer SET ?";
+      con.query(sql, req.body, function (err, result, fields) {
+      if (err) throw err;
+      console.log(result);
+      res.send("등록이 완료 되었습니다.");
+    });
+    };
     console.log(result);
     res.send("등록이 완료 되었습니다.");
   });
 });
 
+app.get("/add", (req, res) =>
+  res.sendFile(path.join(__dirname, "html/form2.html"))
+);
+
 // 사용자 정보 삭제문
-app.get("/delete/:id", (req, res) => {
-  const sql = "DELETE FROM users WHERE id = ?";
-  con.query(sql, [req.params.id], function (err, result, fields) {
+app.get("/delete/:book_no", (req, res) => {
+  const sql = "DELETE FROM book WHERE book_no = ?";
+  con.query(sql, [req.params.book_no], function (err, result, fields) {
     if (err) throw err;
     console.log(result);
     res.redirect("/");
@@ -53,17 +64,17 @@ app.get("/delete/:id", (req, res) => {
 });
 
 // users 레코드값 수정 페이지 화면
-app.get("/edit/:id", (req, res) => {
-  const sql = "SELECT * FROM users WHERE id = ?";
-  con.query(sql, [req.params.id], function (err, result, fileds) {
+app.get("/edit/:book_no", (req, res) => {
+  const sql = "SELECT * FROM book WHERE book_no = ?";
+  con.query(sql, [req.params.book_no], function (err, result, fileds) {
     if (err) throw err;
-    res.render("edit", { users: result });
+    res.render("edit", { book: result });
   });
 });
 
 // users 레코드 값 수정(업데이트)구문
-app.post("/update/:id", (req, res) => {
-  const sql = "UPDATE users SET ? WHERE id = " + req.params.id;
+app.post("/update/:book_no", (req, res) => {
+  const sql = "UPDATE book SET ? WHERE book_no = " + req.params.book_no;
   con.query(sql, req.body, function (err, result, fields) {
     if (err) throw err;
     console.log(result);
