@@ -4,28 +4,86 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>도서관리 시스템</title>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
       table,
       td,
       th {
-        border: 1px solid black;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+      }
+
+      th {
+        font-size: large;
+        background-color:rgb(244, 255, 146)
+      }
+
+      td {
+        background-color: white;
       }
       table {
         width: 30%;
         border-collapse: collapse;
       }
+      body {
+        background-color: lightcyan;
+        text-align: center;
+      }
+      header {
+        background-color: lavenderblush;
+        padding: 2%;
+      }
+      h1 {
+        text-align: center;
+      }
+      input {
+        border: 0;
+        outline: 0;
+        background-color: lavenderblush;
+        font-size: large;
+      }
+      ol {
+        padding-left: 10%;
+        padding-right: 10%;
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        position: relative;
+      }
+      table {
+        width: 100%;
+      }
     </style>
   </head>
   <body>
-    <h1>도서관리프로그램 네프 수행</h1>
     <p><a href="/create"></a></p>
-    <input
-      type="button"
-      value="도서 추가"
-      onclick="location.href='/create'"
-    />
-    <br />
+    <p><a href="/add"></a></p>
+    <header>
+      <h1>도서관리 프로그램</h1>
+      <nav>
+        <ol>
+          <li>
+            <input
+              class="bookAdd"
+              type="button"
+              value="도서 추가"
+              onclick="location.href='/create'"
+            />
+          </li>
+          <li>
+            <input
+              type="button"
+              value="사용자 추가"
+              onclick="location.href='/add'"
+            />
+          </li>
+        </ol>
+      </nav>
+    </header>
     <table>
       <tr>
         <th>이름</th>
@@ -44,11 +102,5 @@
       </tr>
       <% }); %>
     </table>
-    <p><a href="/add"></a></p>
-    <input
-      type="button"
-      value="사용자 추가"
-      onclick="location.href='/add'"
-    />
   </body>
 </html>

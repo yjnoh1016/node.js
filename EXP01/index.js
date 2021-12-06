@@ -39,11 +39,11 @@ app.post("/", (req, res) => {
     if (err) {
       const sql = "INSERT INTO customer SET ?";
       con.query(sql, req.body, function (err, result, fields) {
-      if (err) throw err;
-      console.log(result);
-      res.send("등록이 완료 되었습니다.");
-    });
-    };
+        if (err) throw err;
+        console.log(result);
+        res.send("등록이 완료 되었습니다.");
+      });
+    }
     console.log(result);
     res.send("등록이 완료 되었습니다.");
   });
