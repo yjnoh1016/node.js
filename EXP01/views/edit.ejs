@@ -1,18 +1,90 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>도서 수정</title>
-</head>
-<body>
-    <h1>업데이트 폼</h1>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      table,
+      td,
+      th {
+        border: 1px solid rgba(0, 0, 0, 0.2);
+      }
+
+      td {
+        background-color: white;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      body {
+        background-color: lightcyan;
+        text-align: center;
+      }
+      header {
+        background-color: lavenderblush;
+        padding: 2%;
+      }
+      h1 {
+        text-align: center;
+      }
+      input {
+        outline: 0;
+        border-width: 0;
+        background-color: lavender;
+        width: 100%;
+      }
+      button {
+        margin: 30px;
+        padding: 1%;
+        width: 5vw;
+        border: 0;
+        outline: 0;
+        background-color: white;
+        border-radius: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>업데이트 폼</h1>
+    </header>
     <form action="/update/<%=book[0].book_no %>" method="post">
-        이름<input type="text" name="book_name" value="<%book[0].book_name %>"><br>
-        출판사<input type="text" name="publishing_house" value="<%book[0].publishing_house %>"><br>
-        반납 여부<input type="text" name="rentYN" value="<%book[0].rentYN %>"><br>
-        <button type="submit">업데이트</button>
-    </form>   
-</body>
+      <table>
+        <tr>
+          <td>이름</td>
+          <td>
+            <input
+              type="text"
+              name="book_name"
+              value="<%book[0].book_name %>"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>출판사</td>
+          <td>
+            <input
+              type="text"
+              name="publishing_house"
+              value="<%book[0].publishing_house %>"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>반납 여부</td>
+          <td>
+            <input type="text" name="rentYN" value="<%book[0].rentYN %>" />
+          </td>
+        </tr>
+      </table>
+      <button type="submit">업데이트</button>
+    </form>
+  </body>
 </html>
