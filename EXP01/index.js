@@ -28,32 +28,50 @@ app.get("/", (req, res) => {
 });
 
 // 사용자 정보 입력 화면
-app.get("/create", (req, res) =>
+app.get("/bookform", (req, res) =>
   res.sendFile(path.join(__dirname, "html/form.html"))
 );
 
 // 사용자 정보 입력문
-app.post("/", (req, res) => {
-  const sql = "INSERT INTO book SET ?";
+// app.post("/", (req, res) => {
+//   const sql = "INSERT INTO book SET ?";
+//   con.query(sql, req.body, function (err, result, fields) {
+//     if (err) {
+//       const sql = "INSERT INTO customer SET ?";
+//       con.query(sql, req.body, function (err, result, fields) {
+//         if (err) throw err;
+//         console.log(result);
+//         res.send("등록이 완료 되었습니다.");
+//       });
+//     }
+//     console.log(result);
+//     res.send("등록이 완료 되었습니다.");
+//   });
+// });
+
+app.post("/customer", (req, res) => {
+  const sql = "insert into customer set ?";
   con.query(sql, req.body, function (err, result, fields) {
-    if (err) {
-      const sql = "INSERT INTO customer SET ?";
-      con.query(sql, req.body, function (err, result, fields) {
-        if (err) throw err;
-        console.log(result);
-        res.send("등록이 완료 되었습니다.");
-      });
-    }
+    if (err) throw err;
     console.log(result);
-    res.send("등록이 완료 되었습니다.");
+    res.send("사용자 등록이 완료 되었습니다.");
   });
 });
 
-app.get("/add", (req, res) =>
+app.post("/book", (req, res) => {
+  const sql = "insert into book set ?";
+  con.query(sql, req.body, function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+    res.send("도서 등록이 완료 되었습니다.");
+  });
+});
+
+app.get("/userform", (req, res) =>
   res.sendFile(path.join(__dirname, "html/form2.html"))
 );
 
-// 사용자 정보 삭제문
+// 책 정보 삭제문
 app.get("/delete/:book_no", (req, res) => {
   const sql = "DELETE FROM book WHERE book_no = ?";
   con.query(sql, [req.params.book_no], function (err, result, fields) {
@@ -79,6 +97,16 @@ app.post("/update/:book_no", (req, res) => {
     if (err) throw err;
     console.log(result);
     res.redirect("/");
+  });
+});
+
+app.get("/rent", (req, res) => {
+  const sql =
+    "select B.book_name, C.cust_name, R.rent_date, R.return_date from rent R LEFT OUTER JOIN customer C ON R.cust_no = C.cust_no LEFT OUTER JOIN book B ON R.book_no = B.book_no";
+  con.query(sql, req.body, function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+    res.render("rent", { book: result });
   });
 });
 
