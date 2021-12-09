@@ -19,6 +19,7 @@ const con = mysql.createConnection({
   database: "book",
 });
 
+// 도서 내역 불러오기
 app.get("/", (req, res) => {
   const sql = "SELECT * FROM book";
   con.query(sql, function (err, result, fields) {
@@ -27,7 +28,7 @@ app.get("/", (req, res) => {
   });
 });
 
-// 사용자 정보 입력 화면
+// 도서 정보 입력 화면
 app.get("/bookform", (req, res) =>
   res.sendFile(path.join(__dirname, "html/form.html"))
 );
@@ -49,6 +50,7 @@ app.get("/bookform", (req, res) =>
 //   });
 // });
 
+// 사용자 추가
 app.post("/customer", (req, res) => {
   const sql = "insert into customer set ?";
   con.query(sql, req.body, function (err, result, fields) {
@@ -58,6 +60,7 @@ app.post("/customer", (req, res) => {
   });
 });
 
+// 도서 추가
 app.post("/book", (req, res) => {
   const sql = "insert into book set ?";
   con.query(sql, req.body, function (err, result, fields) {
@@ -67,11 +70,12 @@ app.post("/book", (req, res) => {
   });
 });
 
+// 사용자 정보 입력 화면
 app.get("/userform", (req, res) =>
   res.sendFile(path.join(__dirname, "html/form2.html"))
 );
 
-// 책 정보 삭제문
+// 도서 정보 삭제문
 app.get("/delete/:book_no", (req, res) => {
   const sql = "DELETE FROM book WHERE book_no = ?";
   con.query(sql, [req.params.book_no], function (err, result, fields) {
@@ -81,7 +85,7 @@ app.get("/delete/:book_no", (req, res) => {
   });
 });
 
-// users 레코드값 수정 페이지 화면
+// 도서 레코드값 수정 페이지 화면
 app.get("/edit/:book_no", (req, res) => {
   const sql = "SELECT * FROM book WHERE book_no = ?";
   con.query(sql, [req.params.book_no], function (err, result, fileds) {
@@ -90,7 +94,7 @@ app.get("/edit/:book_no", (req, res) => {
   });
 });
 
-// users 레코드 값 수정(업데이트)구문
+// 도서 레코드 값 수정(업데이트)구문
 app.post("/update/:book_no", (req, res) => {
   const sql = "UPDATE book SET ? WHERE book_no = " + req.params.book_no;
   con.query(sql, req.body, function (err, result, fields) {
@@ -100,6 +104,7 @@ app.post("/update/:book_no", (req, res) => {
   });
 });
 
+// 대출 내역 불러오기
 app.get("/rent", (req, res) => {
   const sql =
     "select B.book_name, C.cust_name, R.rent_date, R.return_date from rent R LEFT OUTER JOIN customer C ON R.cust_no = C.cust_no LEFT OUTER JOIN book B ON R.book_no = B.book_no";
