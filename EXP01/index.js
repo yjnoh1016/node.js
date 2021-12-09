@@ -77,6 +77,11 @@ app.get("/userform", (req, res) =>
   res.sendFile(path.join(__dirname, "html/form2.html"))
 );
 
+// 대여 정보 입력 화면
+app.get("/rentform", (req, res) =>
+  res.sendFile(path.join(__dirname, "html/form3.html"))
+);
+
 // 도서 정보 삭제문
 app.get("/delete/:book_no", (req, res) => {
   const sql = "DELETE FROM book WHERE book_no = ?";
@@ -116,6 +121,17 @@ app.get("/rent", (req, res) => {
     res.render("rent", { book: result });
   });
 });
+
+// 대여 추가
+// app.get("/rentSystem", (req, res) => {
+//   const sql = "insert into rent set ?";
+//   con.query(sql, req.body, function (err, result, fields) {
+//     if (err) throw err;
+//     console.log(result);
+//     // res.send("대여 등록이 완료 되었습니다.");
+//     res.redirect("/");
+//   });
+// });
 
 app.listen(port, () => {
   console.log(`${port}번 포트에서 서버 대기중입니다.`);
