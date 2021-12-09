@@ -29,7 +29,7 @@
       }
       header {
         background-color: lavenderblush;
-        padding: 2%;
+        padding: 3vh;
       }
       h1 {
         text-align: center;
@@ -49,11 +49,64 @@
         background-color: white;
         border-radius: 20px;
       }
+      
+      header input {
+        border: 0;
+        outline: 0;
+        background-color: lavenderblush;
+        font-size: large;
+      }
+
+      ol {
+        padding-top: 1%;
+        padding-left: 10%;
+        padding-right: 10%;
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        position: relative;
+      }
     </style>
   </head>
   <body>
     <header>
-      <h1>도서 정보 입력</h1>
+      <h1>도서 추가</h1>
+      <nav>
+        <ol>
+          <li>
+            <input
+              class="bookAdd"
+              type="button"
+              value="홈"
+              onclick="location.href='/'"
+            />
+          </li>
+          <li>
+            <input
+              class="bookAdd"
+              type="button"
+              value="대출 내역"
+              onclick="location.href='/rent'"
+            />
+          </li>
+          <li>
+            <input
+              class="bookAdd"
+              type="button"
+              value="도서 추가"
+              onclick="location.href='/bookform'"
+            />
+          </li>
+          <li>
+            <input
+              type="button"
+              value="사용자 추가"
+              onclick="location.href='/userform'"
+            />
+          </li>
+        </ol>
+      </nav>
     </header>
     <form action="/book" method="post">
       <table>

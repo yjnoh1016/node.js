@@ -34,7 +34,7 @@
       }
       header {
         background-color: lavenderblush;
-        padding: 2%;
+        padding: 3vh;
       }
       h1 {
         text-align: center;
@@ -46,6 +46,7 @@
         font-size: large;
       }
       ol {
+        padding-top: 1%;
         padding-left: 10%;
         padding-right: 10%;
         width: 80%;
@@ -66,6 +67,22 @@
       <h1>도서관리 프로그램</h1>
       <nav>
         <ol>
+          <li>
+            <input
+              class="bookAdd"
+              type="button"
+              value="홈"
+              onclick="location.href='/'"
+            />
+          </li>
+          <li>
+            <input
+              class="bookAdd"
+              type="button"
+              value="대출 내역"
+              onclick="location.href='/rent'"
+            />
+          </li>
           <li>
             <input
               class="bookAdd"

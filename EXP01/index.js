@@ -56,7 +56,8 @@ app.post("/customer", (req, res) => {
   con.query(sql, req.body, function (err, result, fields) {
     if (err) throw err;
     console.log(result);
-    res.send("사용자 등록이 완료 되었습니다.");
+    // res.send("사용자 등록이 완료 되었습니다.");
+    res.redirect("/");
   });
 });
 
@@ -66,7 +67,8 @@ app.post("/book", (req, res) => {
   con.query(sql, req.body, function (err, result, fields) {
     if (err) throw err;
     console.log(result);
-    res.send("도서 등록이 완료 되었습니다.");
+    // res.send("도서 등록이 완료 되었습니다.");
+    res.redirect("/");
   });
 });
 
