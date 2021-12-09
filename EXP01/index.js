@@ -55,8 +55,7 @@ app.post("/customer", (req, res) => {
   const sql = "insert into customer set ?";
   con.query(sql, req.body, function (err, result, fields) {
     if (err) throw err;
-    console.log(result);
-    // res.send("사용자 등록이 완료 되었습니다.");
+    //console.log(result);
     res.redirect("/");
   });
 });
@@ -67,7 +66,17 @@ app.post("/book", (req, res) => {
   con.query(sql, req.body, function (err, result, fields) {
     if (err) throw err;
     console.log(result);
-    // res.send("도서 등록이 완료 되었습니다.");
+    //res.send("도서 등록이 완료 되었습니다.");
+    res.redirect("/");
+  });
+});
+
+app.post("/rent", (req, res) => {
+  const sql = "insert into rent set ?";
+  con.query(sql, req.body, function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+    // res.send("대여 등록이 완료 되었습니다.");
     res.redirect("/");
   });
 });
@@ -101,18 +110,28 @@ app.get("/edit/:book_no", (req, res) => {
   });
 });
 
+//사용자 목록
+app.get("/user/list", (req, res) => {
+  const sql = "select * FROM customer";
+  con.query(sql, req.body, function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+    res.render("customer", { customer: result });
+  });
+});
+
 // 도서 레코드 값 수정(업데이트)구문
 app.post("/update/:book_no", (req, res) => {
   const sql = "UPDATE book SET ? WHERE book_no = " + req.params.book_no;
   con.query(sql, req.body, function (err, result, fields) {
     if (err) throw err;
-    console.log(result);
+    //  console.log(result);
     res.redirect("/");
   });
 });
 
 // 대출 내역 불러오기
-app.get("/rent", (req, res) => {
+app.get("/rent/list", (req, res) => {
   const sql =
     "select B.book_name, C.cust_name, R.rent_date, R.return_date from rent R LEFT OUTER JOIN customer C ON R.cust_no = C.cust_no LEFT OUTER JOIN book B ON R.book_no = B.book_no";
   con.query(sql, req.body, function (err, result, fields) {

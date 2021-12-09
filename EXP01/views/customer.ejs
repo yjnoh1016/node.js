@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>입력폼</title>
+    <title>도서관리 시스템</title>
     <style>
       * {
         margin: 0;
@@ -16,11 +16,16 @@
         border: 1px solid rgba(0, 0, 0, 0.2);
       }
 
+      th {
+        font-size: large;
+        background-color: rgb(244, 255, 146);
+      }
+
       td {
         background-color: white;
       }
       table {
-        width: 100%;
+        width: 30%;
         border-collapse: collapse;
       }
       body {
@@ -35,28 +40,11 @@
         text-align: center;
       }
       input {
-        outline: 0;
-        border-width: 0;
-        background-color: lavender;
-        width: 100%;
-      }
-      button {
-        margin: 30px;
-        padding: 1%;
-        width: 5vw;
-        border: 0;
-        outline: 0;
-        background-color: white;
-        border-radius: 20px;
-      }
-
-      header input {
         border: 0;
         outline: 0;
         background-color: lavenderblush;
         font-size: large;
       }
-
       ol {
         padding-top: 1%;
         padding-left: 10%;
@@ -67,11 +55,14 @@
         list-style: none;
         position: relative;
       }
+      table {
+        width: 100%;
+      }
     </style>
   </head>
   <body>
     <header>
-      <h1>대여</h1>
+      <h1>사용자 내역 조회</h1>
       <nav>
         <ol>
           <li>
@@ -124,34 +115,17 @@
         </ol>
       </nav>
     </header>
-    <form action="/rent" method="post">
-      <table>
-        <tr>
-          <td>책 번호</td>
-          <td>
-            <input type="text" name="book_no" />
-          </td>
-        </tr>
-        <tr>
-          <td>사용자 번호</td>
-          <td>
-            <input type="text" name="cust_no" />
-          </td>
-        </tr>
-        <tr>
-          <td>빌린 날짜</td>
-          <td>
-            <input type="text" name="rent_date" />
-          </td>
-        </tr>
-        <tr>
-          <td>반납 날짜</td>
-          <td>
-            <input type="text" name="return_date" />
-          </td>
-        </tr>
-      </table>
-      <button type="submit">추가</button>
-    </form>
+    <table>
+      <tr>
+        <th>번호</th>
+        <th>이름</th>
+      </tr>
+      <% customer.forEach(function (value) { %>
+      <tr>
+        <td><%=value.cust_no %></td>
+        <td><%=value.cust_name %></td>
+      </tr>
+      <% }); %>
+    </table>
   </body>
 </html>

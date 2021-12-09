@@ -80,7 +80,15 @@
               class="bookAdd"
               type="button"
               value="대출 내역"
-              onclick="location.href='/rent'"
+              onclick="location.href='/rent/list'"
+            />
+          </li>
+          <li>
+            <input
+              class="bookAdd"
+              type="button"
+              value="사용자 내역"
+              onclick="location.href='/user/list'"
             />
           </li>
           <li>
@@ -111,6 +119,7 @@
     </header>
     <table>
       <tr>
+        <th>도서번호</th>
         <th>제목</th>
         <th>출판사</th>
         <th>반납 여부</th>
@@ -119,6 +128,7 @@
       </tr>
       <% book.forEach(function (value) { %>
       <tr>
+        <td><%=value.book_no %></td>
         <td><%=value.book_name %></td>
         <td><%=value.publishing_house %></td>
         <td><%=value.rentYN %></td>
