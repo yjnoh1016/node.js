@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>도서관리 시스템</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      table,
+      td,
+      th {
+        border: 1px solid rgba(0, 0, 0, 0.2);
+      }
+
+      th {
+        font-size: large;
+        background-color: rgb(244, 255, 146);
+      }
+
+      td {
+        background-color: white;
+      }
+      table {
+        width: 30%;
+        border-collapse: collapse;
+      }
+      body {
+        background-color: lightcyan;
+        text-align: center;
+      }
+      header {
+        background-color: lavenderblush;
+        padding: 3vh;
+      }
+      h1 {
+        text-align: center;
+      }
+      input {
+        border: 0;
+        outline: 0;
+        background-color: lavenderblush;
+        font-size: large;
+      }
+      ol {
+        padding-top: 1%;
+        padding-left: 10%;
+        padding-right: 10%;
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        position: relative;
+      }
+      table {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>대출 내역 조회</h1>
+      <nav>
+        <ol>
+          <li>
+            <input
+              class="bookAdd"
+              type="button"
+              value="홈"
+              onclick="location.href='/'"
+            />
+          </li>
+          <li>
+            <input
+              class="bookAdd"
+              type="button"
+              value="대출 내역"
+              onclick="location.href='/rent/list'"
+            />
+          </li>
+          <li>
+            <input
+              class="bookAdd"
+              type="button"
+              value="사용자 내역"
+              onclick="location.href='/user/list'"
+            />
+          </li>
+          <li>
+            <input
+              class="bookAdd"
+              type="button"
+              value="대여"
+              onclick="location.href='/rentform'"
+            />
+          </li>
+          <li>
+            <input
+              class="bookAdd"
+              type="button"
+              value="도서 추가"
+              onclick="location.href='/bookform'"
+            />
+          </li>
+          <li>
+            <input
+              type="button"
+              value="사용자 추가"
+              onclick="location.href='/userform'"
+            />
+          </li>
+        </ol>
+      </nav>
+    </header>
+    <table>
+      <tr>
+        <th>제목</th>
+        <th>이름</th>
+        <th>대출 날짜</th>
+        <th>반납 날짜</th>
+      </tr>
+      <% book.forEach(function (value) { %>
+      <tr>
+        <td><%=value.book_name %></td>
+        <td><%=value.cust_name %></td>
+        <td><%=value.rent_date %></td>
+        <td><%=value.return_date %></td>
+      </tr>
+      <% }); %>
+    </table>
+  </body>
+</html>
